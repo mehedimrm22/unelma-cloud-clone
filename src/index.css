@@ -1,3 +1,10 @@
+:root {
+  --primary-color: #60BF81;
+  --secondary-color: #3C3F3D;
+  --background-color: #EDF0FA;
+  --white-color: #F1F1F1;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -5,9 +12,10 @@
 }
 
 #root {
-  width: 80%;
+  width: 100vw;
   display: flex;
-  margin: 50px auto;
+  margin: 0 auto;
+  background-color: var(--background-color);
 }
 
 .sidebar {
@@ -17,10 +25,11 @@
   width: 30%;
   padding: 20px;
   overflow: hidden;
+  background-color: var(--secondary-color);
 }
 
 .right-container {
-  width: 30%;
+  width: 70%;
   text-align: center;
   padding: 20px;
 }
