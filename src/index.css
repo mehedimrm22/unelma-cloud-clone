@@ -8,17 +8,19 @@
   width: 80%;
   display: flex;
   margin: 50px auto;
-
 }
 
 .sidebar {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 20%;
+  width: 30%;
+  padding: 20px;
+  overflow: hidden;
 }
 
 .right-container {
-  width: 80%;
+  width: 30%;
   text-align: center;
+  padding: 20px;
 }
