@@ -1,0 +1,13 @@
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 30%;
+    padding: 20px;
+    overflow: hidden;
+    background-color: var(--secondary-color);
+}
+
+.sidebar .sidebar-logo img {
+    width: 85%;
+}

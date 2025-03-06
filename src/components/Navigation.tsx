@@ -15,7 +15,7 @@ export default function Navigation() {
   return (
     <>
       <div className="sidebar">
-        <Link to="all-uploads">
+        <Link className="sidebar-logo" to="all-uploads">
           <img src={logo} alt="File Uploader - noobDev" />
         </Link>
 
@@ -67,6 +67,9 @@ export default function Navigation() {
             All uploads
           </Link>
         </button>
+        <div className="copyright-text">
+          <p>Copyright © 2025 | noobDev</p>
+        </div>
       </div>
       <Outlet />
     </>
