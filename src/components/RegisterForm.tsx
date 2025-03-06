@@ -34,7 +34,7 @@ export default function RegisterForm() {
 
     return (
         <>
-        <div className="registerForm">
+        <div className="registerForm right-container">
             <form onSubmit={handleSubmit}>
                 <label htmlFor="email">Email</label>
                 <input type="email" id="email" required onChange={(e) => setRegisterData({...registerData, email: e.target.value, token_name: e.target.value})}></input>

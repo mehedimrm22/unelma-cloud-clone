@@ -4,8 +4,21 @@
   box-sizing: border-box;
 }
 
+#root {
+  width: 80%;
+  display: flex;
+  margin: 50px auto;
+
+}
+
 .sidebar {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  width: 20%;
+}
+
+.right-container {
+  width: 80%;
+  text-align: center;
 }

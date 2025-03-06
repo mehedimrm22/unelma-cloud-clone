@@ -34,19 +34,21 @@ const FileEntries: React.FC = () => {
       }
 
       try {
-        const response = await axios.get("https://unelmacloud.com/api/v1/drive/file-entries?perPage=50&workspaceId=0", {
-          headers: {
-            Accept: "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        
+        const response = await axios.get(
+          "https://unelmacloud.com/api/v1/drive/file-entries?perPage=50&workspaceId=0",
+          {
+            headers: {
+              Accept: "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
         console.log("Response Data:", response.data);
-        
+
         if (response.data && Array.isArray(response.data.data)) {
           setEntries(response.data.data);
           console.log("Entries:", response.data.data);
-          
         } else {
           setEntries([]);
           console.warn("Unexpected response format:", response.data);
@@ -66,20 +68,37 @@ const FileEntries: React.FC = () => {
   }, []);
 
   return (
-    <div style={{ padding: "16px", border: "1px solid #ccc", borderRadius: "4px", maxWidth: "600px", margin: "auto", textAlign: "center" }}>
+    <div
+      className="right-container"
+      /* style={{
+        padding: "16px",
+        border: "1px solid #ccc",
+        borderRadius: "4px",
+        maxWidth: "600px",
+        margin: "auto",
+        textAlign: "center",
+      }} */
+    >
       <h2>File Entries</h2>
       {loading && <p>Loading...</p>}
       {error && <p style={{ color: "red" }}>{error}</p>}
       <ul style={{ textAlign: "left", padding: "0" }}>
-        {entries.length > 0 ? (
-          entries.map((entry, index) => (
-            <li key={index} style={{ marginBottom: "8px", listStyle: "none", padding: "8px", border: "1px solid #ddd", borderRadius: "4px" }}>
-              {entry.name || "Unnamed File"}
-            </li>
-          ))
-        ) : (
-          !loading && <p>No entries found.</p>
-        )}
+        {entries.length > 0
+          ? entries.map((entry, index) => (
+              <li
+                key={index}
+                style={{
+                  marginBottom: "8px",
+                  listStyle: "none",
+                  padding: "8px",
+                  border: "1px solid #ddd",
+                  borderRadius: "4px",
+                }}
+              >
+                {entry.name || "Unnamed File"}
+              </li>
+            ))
+          : !loading && <p>No entries found.</p>}
       </ul>
     </div>
   );
