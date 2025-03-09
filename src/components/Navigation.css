@@ -39,3 +39,7 @@
     font-weight: 600;
     display: block;
 }
+
+.sidebar-footer {
+    color: var(--white-color);
+}
