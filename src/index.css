@@ -9,6 +9,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
 #root {
@@ -16,6 +17,7 @@
   display: flex;
   margin: 0 auto;
   background-color: var(--background-color);
+  height: 100vh;
 }
 
 .right-container {
