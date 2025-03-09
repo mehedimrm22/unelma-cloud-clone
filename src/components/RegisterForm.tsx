@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import "./RegisterForm.css";
+import "./Form.css";
 
 export default function RegisterForm() {
   const [registerData, setRegisterData] = useState({
@@ -43,7 +43,10 @@ export default function RegisterForm() {
 
   return (
     <>
-      <div className="registerForm right-container">
+      <div className="registerForm Form right-container">
+        <div className="header">
+          <h2>Register</h2>
+        </div>
         <form onSubmit={handleSubmit}>
           <div className="email">
             <label htmlFor="email">Email</label>
@@ -79,8 +82,10 @@ export default function RegisterForm() {
 
           <button type="submit">Register</button>
         </form>
+        <div className="register-success">
+          {registeredNotification && registeredNotification}
+        </div>
       </div>
-      {registeredNotification && registeredNotification}
     </>
   );
 }

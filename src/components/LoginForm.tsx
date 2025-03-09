@@ -2,6 +2,7 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ThemeContext } from "../context";
+import "./Form.css";
 
 export default function LoginForm() {
   const navigate = useNavigate();
@@ -46,35 +47,42 @@ export default function LoginForm() {
 
   return (
     <>
-      <div className="loginForm right-container">
+      <div className="loginForm Form right-container">
+        <div className="header">
+          <h2>Login</h2>
+        </div>
         <form onSubmit={handleSubmit}>
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            required
-            onChange={(e) =>
-              setLoginData({
-                ...loginData,
-                email: e.target.value,
-                token_name: e.target.value,
-              })
-            }
-          ></input>
+          <div className="email">
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              required
+              onChange={(e) =>
+                setLoginData({
+                  ...loginData,
+                  email: e.target.value,
+                  token_name: e.target.value,
+                })
+              }
+            ></input>
+          </div>
 
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            required
-            onChange={(e) =>
-              setLoginData({
-                ...loginData,
-                password: e.target.value,
-                password_confirmation: e.target.value,
-              })
-            }
-          ></input>
+          <div className="password">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              required
+              onChange={(e) =>
+                setLoginData({
+                  ...loginData,
+                  password: e.target.value,
+                  password_confirmation: e.target.value,
+                })
+              }
+            ></input>
+          </div>
 
           <button type="submit">Log in</button>
         </form>

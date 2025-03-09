@@ -1,4 +1,4 @@
-.registerForm {
+.Form {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -6,8 +6,14 @@
     margin-top: 50px;
 }
 
-.registerForm .email,
-.registerForm .password {
+.Form h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.Form .email,
+.Form .password {
     font-size: 1.1rem;
     margin-bottom: 10px;
     width: 400px;
@@ -16,14 +22,14 @@
     align-items: center;
 }
 
-.registerForm .email label,
-.registerForm .password label {
+.email label,
+.password label {
     width: 30%;
     text-align: left;
 }
 
-.registerForm .email input,
-.registerForm .password input {
+.email input,
+.password input {
     width: 70%;
     padding: 10px;
     border: 1px solid var(--secondary-color);
@@ -32,12 +38,12 @@
     transition: all 0.3s ease-in-out;
 }
 
-.registerForm .email input:focus,
-.registerForm .password input:focus {
+.email input:focus,
+.password input:focus {
     border: 1px solid var(--primary-color);
 }
 
-.registerForm button {
+.Form button {
     width: 400px;
     padding: 10px;
     margin-top: 20px;
@@ -52,6 +58,14 @@
     letter-spacing: 1px;
 }
 
-.registerForm button:hover {
+.Form button:hover {
     background-color: var(--secondary-color);
+}
+
+.register-success {
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-top: 20px;
+    position: relative;
+    bottom: 0;
 }
