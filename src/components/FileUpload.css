@@ -1,0 +1,80 @@
+.upload-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    background-color: var(--background-color);
+}
+
+.upload {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 70%;
+    height: 50%;
+    border: 1px dashed var(--secondary-color);
+    border-radius: 5px;
+}
+
+.upload-container h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.upload-icon {
+    font-size: 3rem;
+    font-weight: 500;
+}
+
+.upload-icon p {
+    font-size: 1.2rem;
+    margin-top: 5px;
+}
+
+.upload .browse-button {
+    background-color: var(--primary-color);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    color: var(--secondary-color);
+    cursor: pointer;
+    position: relative;
+    font-weight: 600;
+    letter-spacing: 1px;
+    font-size: 0.8rem;
+    margin: 10px 0;
+}
+
+.upload .browse-button input[type="file"] {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.file-name {
+    margin-top: 10px;
+    font-size: 14px;
+    color: var(--secondary-color);
+}
+
+.upload-button {
+    padding: 10px 20px;
+    margin-top: 20px;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+    font-weight: 600;
+    letter-spacing: 1px;
+}

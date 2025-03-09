@@ -1,10 +1,12 @@
 import { useState } from "react";
 import axios from "axios";
+import "./FileUpload.css";
 
 const FileUploader: React.FC = () => {
   const [file, setFile] = useState<File | null>(null);
   const [uploading, setUploading] = useState(false);
   const [message, setMessage] = useState("");
+  const [fileName, setFileName] = useState<string | null>(null);
 
   // Function to get token from localStorage
   const getAuthToken = () => {
@@ -19,6 +21,7 @@ const FileUploader: React.FC = () => {
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
       setFile(event.target.files[0]);
+      setFileName(event.target.files[0].name);
     }
   };
 
@@ -64,33 +67,23 @@ const FileUploader: React.FC = () => {
   };
 
   return (
-    <div
-      className="right-container"
-      style={{
-        padding: "16px",
-        border: "1px solid #ccc",
-        borderRadius: "4px",
-        maxWidth: "400px",
-        margin: "auto",
-        textAlign: "center",
-      }}
-    >
-      <input
-        type="file"
-        onChange={handleFileChange}
-        style={{ marginBottom: "8px" }}
-      />
+    <div className="right-container upload-container">
+      <h2>Upload File</h2>
+      <div className="upload">
+        <div className="upload-icon">
+          +<p>Drag your file here</p>
+          <p>or</p>
+        </div>
+        <label className="browse-button">
+          Browse
+          <input type="file" onChange={handleFileChange} />
+        </label>
+        {fileName && <p className="file-name">{fileName}</p>}
+      </div>
       <button
+        className="upload-button"
         onClick={handleUpload}
         disabled={uploading}
-        style={{
-          backgroundColor: "blue",
-          color: "white",
-          padding: "8px 16px",
-          border: "none",
-          borderRadius: "4px",
-          cursor: "pointer",
-        }}
       >
         {uploading ? "Uploading..." : "Upload File"}
       </button>
