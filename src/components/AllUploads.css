@@ -1,0 +1,44 @@
+.AllUploads {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    padding-top: 50px;
+}
+
+.AllUploads h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.AllUploads ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    width: 90%;
+}
+
+.AllUploads li {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    width: 100%;
+}
+
+.AllUploads li::before {
+    content: "📎";
+    margin-right: 10px;
+    font-size: 1.2rem;
+    color: #666;
+}
+
+.AllUploads p {
+    margin: 0;
+}

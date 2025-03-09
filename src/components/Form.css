@@ -1,0 +1,71 @@
+.Form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.Form h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.Form .email,
+.Form .password {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    width: 400px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.email label,
+.password label {
+    width: 30%;
+    text-align: left;
+}
+
+.email input,
+.password input {
+    width: 70%;
+    padding: 10px;
+    border: 1px solid var(--secondary-color);
+    border-radius: 5px;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.email input:focus,
+.password input:focus {
+    border: 1px solid var(--primary-color);
+}
+
+.Form button {
+    width: 400px;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.Form button:hover {
+    background-color: var(--secondary-color);
+}
+
+.register-success {
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-top: 20px;
+    position: relative;
+    bottom: 0;
+}
