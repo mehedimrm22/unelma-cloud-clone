@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "./AllUploads.css";
 
 const FileEntries: React.FC = () => {
   const [entries, setEntries] = useState<any[]>([]);
@@ -68,35 +69,14 @@ const FileEntries: React.FC = () => {
   }, []);
 
   return (
-    <div
-      className="right-container"
-      /* style={{
-        padding: "16px",
-        border: "1px solid #ccc",
-        borderRadius: "4px",
-        maxWidth: "600px",
-        margin: "auto",
-        textAlign: "center",
-      }} */
-    >
-      <h2>File Entries</h2>
+    <div className="right-container AllUploads">
+      <h2>All Uploads</h2>
       {loading && <p>Loading...</p>}
       {error && <p style={{ color: "red" }}>{error}</p>}
-      <ul style={{ textAlign: "left", padding: "0" }}>
+      <ul>
         {entries.length > 0
           ? entries.map((entry, index) => (
-              <li
-                key={index}
-                style={{
-                  marginBottom: "8px",
-                  listStyle: "none",
-                  padding: "8px",
-                  border: "1px solid #ddd",
-                  borderRadius: "4px",
-                }}
-              >
-                {entry.name || "Unnamed File"}
-              </li>
+              <li key={index}>{entry.name || "Unnamed File"}</li>
             ))
           : !loading && <p>No entries found.</p>}
       </ul>
