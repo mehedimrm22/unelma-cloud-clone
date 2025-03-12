@@ -3,8 +3,10 @@ import axios from "axios";
 import "./AllUploads.css";
 
 const FileEntries: React.FC = () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [entries, setEntries] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
+  const [reload, setReload] = useState(false);
   const [error, setError] = useState("");
 
   // Function to get token from localStorage with error handling
@@ -66,7 +68,8 @@ const FileEntries: React.FC = () => {
     };
 
     fetchEntries();
-  }, []);
+  }, [reload]);
+
 
   return (
     <div className="right-container AllUploads">
@@ -76,7 +79,23 @@ const FileEntries: React.FC = () => {
       <ul>
         {entries.length > 0
           ? entries.map((entry, index) => (
-              <li key={index}>{entry.name || "Unnamed File"}</li>
+            <li key={index}>
+            <span className="file-name">{entry.name || "Unnamed File"}</span>
+            <button className="delete-button" title="Delete" onClick={async() => {
+              if (confirm("Are you sure you want to delete the file?") == true) {
+                const token = getAuthToken();
+                axios.delete(`https://unelmacloud.com/api/v1/file-entries/${entry.id}`,
+                {
+                  headers: {
+                    Accept: "application/json",
+                    Authorization: `Bearer ${token}`,
+                  },
+                })
+                .then(() => setReload(!reload));
+              }
+            }}>
+            </button>
+          </li>
             ))
           : !loading && <p>No entries found.</p>}
       </ul>
