@@ -10,3 +10,9 @@
     color: #000;
     margin-right: 2rem;
 }
+iframe{
+    background: none;
+    background-color: none;
+    border: none;
+    fill: none;
+}
