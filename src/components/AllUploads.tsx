@@ -78,7 +78,7 @@ const FileEntries: React.FC = () => {
     {isToken ? (
             <div className="right-container AllUploads">
             <h2>All Uploads</h2>
-            {loading && <p>Loading...</p>}
+            {loading && <iframe src="https://lottie.host/embed/83696a6d-8bd9-4df5-aab0-511cb216d2e1/yYtsK5E6dl.lottie"></iframe>}
             {error && <p style={{ color: "red" }}>{error}</p>}
             <ul>
               {entries.length > 0

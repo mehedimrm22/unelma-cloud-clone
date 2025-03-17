@@ -92,6 +92,7 @@ const FileUploader: React.FC = () => {
     <>
       {isToken ? (
         <div className="right-container upload-container">
+
           <h2>Upload File</h2>
           <div className="upload">
             <div className="upload-icon">
@@ -105,11 +106,11 @@ const FileUploader: React.FC = () => {
             {fileName && <p className="file-name">{fileName}</p>}
           </div>
           <button
-            className="upload-button"
+            className={uploading ? "upload-button-disabled" : "upload-button"}
             onClick={handleUpload}
             disabled={uploading}
           >
-            {uploading ? "Uploading..." : "Upload File"}
+            {uploading ? (<iframe src="https://lottie.host/embed/f4a70e81-69e4-4eb0-9979-862ce3ba5462/aHBzSd6rAE.lottie"></iframe>) : "Upload File"}
           </button>
           {message && (
             <p style={{ marginTop: "8px", fontSize: "14px", color: "#555" }}>
@@ -117,6 +118,7 @@ const FileUploader: React.FC = () => {
             </p>
           )}
         </div>
+        
       ) : (
         <div className="right-container upload-container">
           <h2>Upload File</h2>

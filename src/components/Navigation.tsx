@@ -51,7 +51,7 @@ export default function Navigation() {
           {loggedIn ? (
             <button onClick={handleLogout}>
               <Link
-                to="/"
+                to="home"
                 style={{ textDecoration: "none", color: "inherit" }}
               >
                 Log out

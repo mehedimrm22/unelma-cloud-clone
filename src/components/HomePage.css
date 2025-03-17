@@ -1,0 +1,12 @@
+.home{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+.normal-text{
+    font-size: 2rem;
+    font-weight: 1100;
+    color: #000;
+    margin-right: 2rem;
+}

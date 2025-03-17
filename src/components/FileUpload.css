@@ -78,3 +78,8 @@
     font-weight: 600;
     letter-spacing: 1px;
 }
+iframe{
+    background: none;
+    background-color: none;
+    border: none;
+}
