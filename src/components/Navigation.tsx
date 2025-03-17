@@ -7,10 +7,27 @@ import "./Navigation.css";
 export default function Navigation() {
   const { loggedIn, setLoggedIn } = useContext(ThemeContext);
 
+  // Check for token whenever the component renders
   useEffect(() => {
-    const token = localStorage.getItem("access_token");
-    setLoggedIn(!!token);
-  }, []);
+    const checkToken = () => {
+      const token = localStorage.getItem("access_token");
+      setLoggedIn(!!token); // Update state based on token presence
+    };
+
+    checkToken(); // Run check initially
+
+    // Listen for localStorage changes (Login/Logout)
+    window.addEventListener("storage", checkToken);
+
+    return () => {
+      window.removeEventListener("storage", checkToken);
+    };
+  }, [setLoggedIn]); // Depend on `setLoggedIn` to avoid unnecessary re-renders
+
+  const handleLogout = () => {
+    localStorage.removeItem("access_token"); // Remove token
+    setLoggedIn(false); // Update UI
+  };
 
   return (
     <>
@@ -30,22 +47,18 @@ export default function Navigation() {
               Register
             </Link>
           </button>
+          
           {loggedIn ? (
-            <button
-              onClick={() => {
-                localStorage.removeItem("access_token");
-                setLoggedIn(false);
-              }}
-            >
+            <button onClick={handleLogout}>
               <Link
-                to="login"
+                to="home"
                 style={{ textDecoration: "none", color: "inherit" }}
               >
                 Log out
               </Link>
             </button>
           ) : (
-            <button onClick={() => setLoggedIn(true)}>
+            <button>
               <Link
                 to="login"
                 style={{ textDecoration: "none", color: "inherit" }}
@@ -54,6 +67,7 @@ export default function Navigation() {
               </Link>
             </button>
           )}
+
           <button>
             <Link
               to="file-upload"
@@ -71,6 +85,7 @@ export default function Navigation() {
             </Link>
           </button>
         </div>
+
         <div className="sidebar-footer">
           <div className="copyright-text">
             <p>Copyright © 2025 | noobDev</p>

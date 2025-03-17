@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import "./FileUpload.css";
 
@@ -7,6 +7,7 @@ const FileUploader: React.FC = () => {
   const [uploading, setUploading] = useState(false);
   const [message, setMessage] = useState("");
   const [fileName, setFileName] = useState<string | null>(null);
+  const [isToken, setIsToken] = useState(false);
 
   // Function to get token from localStorage
   const getAuthToken = () => {
@@ -17,6 +18,19 @@ const FileUploader: React.FC = () => {
     }
     return token;
   };
+
+  // Check token on component mount
+  useEffect(() => {
+    try {
+      const token = localStorage.getItem("access_token");
+      if (token) {
+        setIsToken(true);
+      }
+    } catch (error) {
+      console.error("Error fetching token:", error);
+      setIsToken(false);
+    }
+  }, []); // Runs once when the component mounts
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
@@ -34,7 +48,15 @@ const FileUploader: React.FC = () => {
     setUploading(true);
     setMessage("");
 
-    const token = getAuthToken();
+    let token;
+    try {
+      token = getAuthToken(); // Fetch token
+    } catch (error) {
+      setMessage("Authentication token not found. Please log in.");
+      setUploading(false);
+      return;
+    }
+
     const formData = new FormData();
     formData.append("file", file);
     formData.append("parentId", "null");
@@ -67,32 +89,43 @@ const FileUploader: React.FC = () => {
   };
 
   return (
-    <div className="right-container upload-container">
-      <h2>Upload File</h2>
-      <div className="upload">
-        <div className="upload-icon">
-          +<p>Drag your file here</p>
-          <p>or</p>
+    <>
+      {isToken ? (
+        <div className="right-container upload-container">
+          <iframe src="https://lottie.host/embed/f4a70e81-69e4-4eb0-9979-862ce3ba5462/aHBzSd6rAE.lottie"></iframe>
+          <h2>Upload File</h2>
+          <div className="upload">
+            <div className="upload-icon">
+              +<p>Drag your file here</p>
+              <p>or</p>
+            </div>
+            <label className="browse-button">
+              Browse
+              <input type="file" onChange={handleFileChange} />
+            </label>
+            {fileName && <p className="file-name">{fileName}</p>}
+          </div>
+          <button
+            className={uploading ? "upload-button-disabled" : "upload-button"}
+            onClick={handleUpload}
+            disabled={uploading}
+          >
+            {uploading ? (<iframe src="https://lottie.host/embed/f4a70e81-69e4-4eb0-9979-862ce3ba5462/aHBzSd6rAE.lottie"></iframe>) : "Upload File"}
+          </button>
+          {message && (
+            <p style={{ marginTop: "8px", fontSize: "14px", color: "#555" }}>
+              {message}
+            </p>
+          )}
         </div>
-        <label className="browse-button">
-          Browse
-          <input type="file" onChange={handleFileChange} />
-        </label>
-        {fileName && <p className="file-name">{fileName}</p>}
-      </div>
-      <button
-        className="upload-button"
-        onClick={handleUpload}
-        disabled={uploading}
-      >
-        {uploading ? "Uploading..." : "Upload File"}
-      </button>
-      {message && (
-        <p style={{ marginTop: "8px", fontSize: "14px", color: "#555" }}>
-          {message}
-        </p>
+        
+      ) : (
+        <div className="right-container upload-container">
+          <h2>Upload File</h2>
+          <p>Please log in to upload files.</p>
+        </div>
       )}
-    </div>
+    </>
   );
 };
 

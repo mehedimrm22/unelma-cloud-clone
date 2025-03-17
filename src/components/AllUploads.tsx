@@ -8,6 +8,7 @@ const FileEntries: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [reload, setReload] = useState(false);
   const [error, setError] = useState("");
+  const [isToken, setIsToken] = useState(false);
 
   // Function to get token from localStorage with error handling
   const getAuthToken = () => {
@@ -26,6 +27,7 @@ const FileEntries: React.FC = () => {
       let token;
       try {
         token = getAuthToken();
+        setIsToken(true);
       } catch (error) {
         if (error instanceof Error) {
           setError(error.message);
@@ -72,34 +74,44 @@ const FileEntries: React.FC = () => {
 
 
   return (
-    <div className="right-container AllUploads">
-      <h2>All Uploads</h2>
-      {loading && <p>Loading...</p>}
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      <ul>
-        {entries.length > 0
-          ? entries.map((entry, index) => (
-            <li key={index}>
-            <span className="file-name">{entry.name || "Unnamed File"}</span>
-            <button className="delete-button" title="Delete" onClick={async() => {
-              if (confirm("Are you sure you want to delete the file?") == true) {
-                const token = getAuthToken();
-                axios.delete(`https://unelmacloud.com/api/v1/file-entries/${entry.id}`,
-                {
-                  headers: {
-                    Accept: "application/json",
-                    Authorization: `Bearer ${token}`,
-                  },
-                })
-                .then(() => setReload(!reload));
-              }
-            }}>
-            </button>
-          </li>
-            ))
-          : !loading && <p>No entries found.</p>}
-      </ul>
-    </div>
+    <>
+    {isToken ? (
+            <div className="right-container AllUploads">
+            <h2>All Uploads</h2>
+            {loading && <iframe src="https://lottie.host/embed/83696a6d-8bd9-4df5-aab0-511cb216d2e1/yYtsK5E6dl.lottie"></iframe>}
+            {error && <p style={{ color: "red" }}>{error}</p>}
+            <ul>
+              {entries.length > 0
+                ? entries.map((entry, index) => (
+                  <li key={index}>
+                  <span className="file-name">{entry.name || "Unnamed File"}</span>
+                  <button className="delete-button" title="Delete" onClick={async() => {
+                    if (confirm("Are you sure you want to delete the file?") == true) {
+                      const token = getAuthToken();
+                      axios.delete(`https://unelmacloud.com/api/v1/file-entries/${entry.id}`,
+                      {
+                        headers: {
+                          Accept: "application/json",
+                          Authorization: `Bearer ${token}`,
+                        },
+                      })
+                      .then(() => setReload(!reload));
+                    }
+                  }}>
+                  </button>
+                </li>
+                  ))
+                : !loading && <p>No entries found.</p>}
+            </ul>
+          </div>
+        ):(
+            <div className="right-container AllUploads">
+            <h2>All Uploads</h2>
+            <p>Please log in to view your uploads.</p>
+          </div>
+        )
+    }
+    </>
   );
 };
 
