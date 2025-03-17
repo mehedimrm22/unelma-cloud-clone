@@ -1,4 +1,4 @@
-
+import "../../public/logo.svg";
 import "./HomePage.css";
 import { WordRotateDemo } from "./TextEffect/TextEffect";
 
@@ -7,7 +7,7 @@ const HomePage = () => {
     <div>
       <div className="hero">
         <div className="hero-overlay">
-            <img src="/unelma-cloud-clone/public/logo.svg" alt="logo" />
+            <img src="../../public/logo.svg" alt="logo" />
         </div>
         <div className="home">
           <div className="normal-text">Now Uploading Files becomes</div>

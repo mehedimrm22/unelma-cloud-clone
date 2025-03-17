@@ -92,7 +92,7 @@ const FileUploader: React.FC = () => {
     <>
       {isToken ? (
         <div className="right-container upload-container">
-
+          <iframe src="https://lottie.host/embed/f4a70e81-69e4-4eb0-9979-862ce3ba5462/aHBzSd6rAE.lottie"></iframe>
           <h2>Upload File</h2>
           <div className="upload">
             <div className="upload-icon">
