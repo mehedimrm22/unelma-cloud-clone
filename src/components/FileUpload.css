@@ -4,7 +4,6 @@
     align-items: center;
     flex-direction: column;
     height: 100%;
-    width: 100%;
     background-color: var(--background-color);
 }
 
@@ -66,6 +65,8 @@
 }
 
 .upload-button {
+    all: unset;
+    background-color: transparent;
     padding: 10px 20px;
     margin-top: 20px;
     background-color: var(--primary-color);
@@ -78,8 +79,16 @@
     font-weight: 600;
     letter-spacing: 1px;
 }
-iframe{
+
+button:disabled {
+    background-color: transparent;
+    border: none;
+}
+
+.iframe {
     background: none;
     background-color: none;
     border: none;
+    fill: none;
+    fill-opacity: 0;
 }

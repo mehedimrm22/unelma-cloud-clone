@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { ThemeContext } from "../context";
-import logo from "../../public/logo.svg";
+import logo from "/logo.svg";
 import "./Navigation.css";
 
 export default function Navigation() {
@@ -47,7 +47,7 @@ export default function Navigation() {
               Register
             </Link>
           </button>
-          
+
           {loggedIn ? (
             <button onClick={handleLogout}>
               <Link
