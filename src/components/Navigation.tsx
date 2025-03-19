@@ -33,7 +33,7 @@ export default function Navigation() {
     <>
       <div className="sidebar">
         <div className="sidebar-logo">
-          <Link className="sidebar-logo" to="all-uploads">
+          <Link className="sidebar-logo" to="/">
             <img src={logo} alt="File Uploader - noobDev" />
           </Link>
         </div>
