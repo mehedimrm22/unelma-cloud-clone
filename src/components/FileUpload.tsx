@@ -104,7 +104,6 @@ const FileUploader: React.FC = () => {
       );
 
       setMessage("Upload successful!");
-      console.log("Upload Response:", response.data);
 
       // Reset file input and state
       setFile(null);

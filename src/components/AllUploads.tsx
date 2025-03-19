@@ -47,7 +47,7 @@ const FileEntries: React.FC = () => {
           }
         );
 
-        console.log("Response Data:", response.data);
+      
 
         if (response.data && Array.isArray(response.data.data)) {
           setEntries(response.data.data);
