@@ -1,18 +1,33 @@
-.home{
+.hero {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: auto;
+    flex-direction: column;
+    height: 100vh;
 }
-.normal-text{
+
+.home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.normal-text {
     font-size: 2rem;
-    font-weight: 1100;
+    font-weight: 400;
     color: #000;
-    margin-right: 2rem;
+    margin-right: 10px;
 }
-iframe{
+
+.magic-text {
+    color: var(--primary-color);
+}
+
+iframe {
     background: none;
-    background-color: none;
+    background-color: transparent;
     border: none;
     fill: none;
+    width: 200px;
+    height: 200px;
 }
