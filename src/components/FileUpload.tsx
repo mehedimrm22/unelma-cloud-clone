@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import "./FileUpload.css";
 
@@ -8,11 +8,13 @@ const FileUploader: React.FC = () => {
   const [message, setMessage] = useState("");
   const [fileName, setFileName] = useState<string | null>(null);
   const [isToken, setIsToken] = useState(false);
+  const [isDragging, setIsDragging] = useState(false); // Drag state
+
+  const fileInputRef = useRef<HTMLInputElement | null>(null); // Reference for file input
 
   // Function to get token from localStorage
   const getAuthToken = () => {
     const token = localStorage.getItem("access_token");
-    console.log("Token:", token);
     if (!token) {
       throw new Error("Authentication token not found. Please log in.");
     }
@@ -30,15 +32,41 @@ const FileUploader: React.FC = () => {
       console.error("Error fetching token:", error);
       setIsToken(false);
     }
-  }, []); // Runs once when the component mounts
+  }, []);
 
+  // Handle file selection via input
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
-      setFile(event.target.files[0]);
-      setFileName(event.target.files[0].name);
+      const selectedFile = event.target.files[0];
+      setFile(selectedFile);
+      setFileName(selectedFile.name);
     }
   };
 
+  // Handle file drop event
+  const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    setIsDragging(false);
+
+    if (event.dataTransfer.files && event.dataTransfer.files.length > 0) {
+      const droppedFile = event.dataTransfer.files[0];
+      setFile(droppedFile);
+      setFileName(droppedFile.name);
+    }
+  };
+
+  // Prevent default behavior when dragging over
+  const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    setIsDragging(true);
+  };
+
+  // Handle drag leave event
+  const handleDragLeave = () => {
+    setIsDragging(false);
+  };
+
+  // Handle file upload
   const handleUpload = async () => {
     if (!file) {
       setMessage("Please select a file first.");
@@ -50,7 +78,7 @@ const FileUploader: React.FC = () => {
 
     let token;
     try {
-      token = getAuthToken(); // Fetch token
+      token = getAuthToken();
     } catch (error) {
       setMessage("Authentication token not found. Please log in.");
       setUploading(false);
@@ -77,6 +105,13 @@ const FileUploader: React.FC = () => {
 
       setMessage("Upload successful!");
       console.log("Upload Response:", response.data);
+
+      // Reset file input and state
+      setFile(null);
+      setFileName(null);
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
     } catch (error) {
       if (axios.isAxiosError(error)) {
         setMessage(`Error: ${error.response?.data?.message || error.message}`);
@@ -93,14 +128,23 @@ const FileUploader: React.FC = () => {
       {isToken ? (
         <div className="right-container upload-container">
           <h2>Upload File</h2>
-          <div className="upload">
+          <div
+            className={`upload ${isDragging ? "dragging" : ""}`}
+            onDrop={handleDrop}
+            onDragOver={handleDragOver}
+            onDragLeave={handleDragLeave}
+          >
             <div className="upload-icon">
               +<p>Drag your file here</p>
               <p>or</p>
             </div>
             <label className="browse-button">
               Browse
-              <input type="file" onChange={handleFileChange} />
+              <input
+                type="file"
+                onChange={handleFileChange}
+                ref={fileInputRef}
+              />
             </label>
             {fileName && <p className="file-name">{fileName}</p>}
           </div>
