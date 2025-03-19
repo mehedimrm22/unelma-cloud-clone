@@ -4,6 +4,8 @@
     align-items: center;
     flex-direction: column;
     height: 100vh;
+    position: relative;
+    bottom: 10%;
 }
 
 .home {
@@ -28,6 +30,6 @@ iframe {
     background-color: transparent;
     border: none;
     fill: none;
-    width: 200px;
-    height: 200px;
+    width: 250px;
+    height: 250px;
 }

@@ -21,7 +21,6 @@
 
 .AllUploads ul {
     list-style-type: none;
-    padding: 0;
     margin: 0;
     width: 90%;
 }
@@ -29,6 +28,9 @@
 .file-list {
     height: auto;
     overflow: scroll;
+    scrollbar-color: var(--primary-color) var(--background-color);
+    scrollbar-width: thin;
+    padding: 0 10px;
 }
 
 .AllUploads li {
@@ -80,19 +82,27 @@
     transform: scale(1.1);
 }
 
-.search-bar{
-    width: 100%;
+.search-bar {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin: 0 auto 15px;
 }
-input{
+
+input {
     padding: 10px;
-    margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 8px;
     font-size: 1rem;
-    width: 60%;
-    margin: auto;
+    width: 100%;
+    padding-left: 50px;
 }
-#search{
+
+#search {
     padding-top: 2px;
-    height: 30px;
+    height: 25px;
+    position: absolute;
+    left: 0;
 }
