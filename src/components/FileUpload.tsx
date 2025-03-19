@@ -91,13 +91,17 @@ const FileUploader: React.FC = () => {
     formData.append("relativePath", "");
 
     try {
-      await axios.post("https://unelmacloud.com/api/v1/uploads", formData, {
-        headers: {
-          Accept: "application/json",
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const response = await axios.post(
+        "https://unelmacloud.com/api/v1/uploads",
+        formData,
+        {
+          headers: {
+            Accept: "application/json",
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
 
       setMessage("Upload successful!");
 
