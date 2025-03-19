@@ -21,7 +21,6 @@
 
 .AllUploads ul {
     list-style-type: none;
-    padding: 0;
     margin: 0;
     width: 90%;
 }
@@ -29,6 +28,9 @@
 .file-list {
     height: auto;
     overflow: scroll;
+    scrollbar-color: var(--primary-color) var(--background-color);
+    scrollbar-width: thin;
+    padding: 0 10px;
 }
 
 .AllUploads li {
