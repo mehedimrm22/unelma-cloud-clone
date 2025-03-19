@@ -19,11 +19,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Navigation />}>
             <Route path="register" element={<RegisterForm />}></Route>
-            <Route path="home" element={<HomePage></HomePage>}></Route>
+            <Route path="/" element={<HomePage/>}></Route>
             <Route path="login" element={<LoginForm />}></Route>
             <Route path="file-upload" element={<FileUpload />}></Route>
             <Route path="all-uploads" element={<AllUploads />}></Route>
-            
           </Route>
         </Routes>
       </BrowserRouter>
